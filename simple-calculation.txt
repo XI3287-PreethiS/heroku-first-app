@@ -1,0 +1,32 @@
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@RestController
+public class SimpleCalculationApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SimpleCalculationApplication.class, args);
+	}
+	
+	@GetMapping("/{opt}/{no1}/{no2}")
+	public String calculation(@PathVariable String opt, @PathVariable int no1, @PathVariable int no2) {
+		if(opt.equalsIgnoreCase("add")) {
+			return String.valueOf(no1 + no2);
+		}else if(opt.equalsIgnoreCase("sub")) {
+			return String.valueOf(no1 - no2);
+		}else if(opt.equalsIgnoreCase("multi")) {
+			return String.valueOf(no1 * no2);
+		}else if(opt.equalsIgnoreCase("divide")) {
+			return String.valueOf(no1 / no2);
+		} else {
+			return "Invalid option";
+		}
+	}
+
+}
